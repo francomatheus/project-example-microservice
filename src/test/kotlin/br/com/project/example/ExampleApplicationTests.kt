@@ -19,7 +19,7 @@ class ExampleApplicationTests: MongoDBContainerTest() {
 	@Test
 	fun contextLoads() {
 		assertAll(
-			{ assertTrue(true) }
+			{ assertTrue(mongoDBContainer.isRunning) }
 		)
 	}
 

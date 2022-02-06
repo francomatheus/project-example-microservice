@@ -13,7 +13,8 @@ import org.testcontainers.utility.DockerImageName
 open class MongoDBContainerTest {
 
     @Container
-    private val mongoDBContainer = MongoDBContainer(DockerImageName.parse("mongo:4.0.10"))
+    val mongoDBContainer = MongoDBContainer(DockerImageName.parse("mongo:4.0.10"))
+        .withExposedPorts(27017)
 
     @BeforeAll
     fun setUp(){
