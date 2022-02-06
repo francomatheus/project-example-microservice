@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: myapp
+  cloud:
+    config:
+      enabled: true
+      name: my-app
+      uri: ${CONFIG_SERVER:http://localhost:9000}
+      label: ${LABEL:main}
+      fail-fast: true
