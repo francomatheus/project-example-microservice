@@ -36,22 +36,34 @@ dependencies {
 	}
 	implementation("io.gitlab.arturbosch.detekt:detekt-formatting:1.19.0")
 
-	implementation("org.springframework.boot:spring-boot-starter-actuator")
-	implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
-	implementation("org.springframework.boot:spring-boot-starter-validation")
+	//
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+	implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
 	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
+
+	//
+	implementation("org.springframework.boot:spring-boot-starter-validation")
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
-//	implementation("org.springframework.cloud:spring-cloud-bus")
+
+	// cloud
 	implementation("org.springframework.cloud:spring-cloud-starter")
 	implementation("org.springframework.cloud:spring-cloud-starter-config")
 
-	runtimeOnly("io.micrometer:micrometer-registry-prometheus")
-	implementation("io.opentracing.contrib:opentracing-spring-jaeger-web-starter:3.3.1")
 
+	// Tracing, metrics, logs
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
+	implementation("net.logstash.logback:logstash-logback-encoder:7.0.1")
+	implementation("io.opentracing.contrib:opentracing-spring-jaeger-web-starter:3.3.1")
+//	implementation("org.springframework.cloud:spring-cloud-sleuth-zipkin")
+//	implementation("org.springframework.cloud:spring-cloud-starter-sleuth")
+	runtimeOnly("io.micrometer:micrometer-registry-prometheus")
+
+	// messaging for update application.yml
+//	implementation("org.springframework.cloud:spring-cloud-bus")
+	// tests
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.projectreactor:reactor-test")
 	testImplementation("org.testcontainers:junit-jupiter")

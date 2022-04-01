@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Pegar nome da aplicação no arquivo de configuração -->
+        <springproperty scope="context" name="springAppName" source="spring.application.name" />
+
+    <!-- Configuração do logs para exibir na tela -->
+<!--    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">-->
+<!--        <encoder>-->
+<!--            <pattern>-->
+<!--                {"timestamp": "%d{yyyy-MM-dd HH:mm:ss}", "level": "%level", "application": "${app_name}", "span": "%X{spanId:-}", "pid": "${PID:-}", "thread": "%thread", "class": "%logger{45}", "message": "%message", "traceId": "%X{traceId:-}", "methodClass":"%M"} %n-->
+<!--            </pattern>-->
+<!--        <charset>utf8</charset>-->
+<!--        </encoder>-->
+<!--    </appender>-->
+
+    <!-- Enviar logs pro logstash via protocolo TCP -->
+<!--    <appender name="stash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">-->
+<!--        <destination>localhost:5000</destination>-->
+<!--        <encoder class="net.logstash.logback.encoder.LogstashEncoder" >-->
+<!--            <Pattern> {"timestamp": "%d{yyyy-MM-dd HH:mm:ss}", "level": "%level", "application": "${springAppName:-}", "span": "%X{spanId:-}", "pid": "${PID:-}", "thread": "%thread", "class": "%logger{45}", "message": "%message", "traceId": "%X{traceId:-}", "methodClass":"%M"} %n </Pattern>-->
+<!--        </encoder>-->
+<!--    </appender>-->
+
+
+<!-- Armazenar logs em um arquivo -->
+<!--    <appender name="SAVE-TO-FILE" class="ch.qos.logback.core.FileAppender">-->
+<!--        <file>logs/application.log</file>-->
+<!--        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
+<!--            <Pattern> {"timestamp": "%d{yyyy-MM-dd HH:mm:ss}", "level": "%level", "application": "${app_name}", "span": "%X{spanId:-}", "pid": "${PID:-}", "thread": "%thread", "class": "%logger{45}", "message": "%message", "traceId": "%X{traceId:-}", "methodClass":"%M"} %n </Pattern>-->
+<!--        </encoder>-->
+<!--    </appender>-->
+<!--    <logger name="com.demo.ELK" additivity="false" level="info">-->
+<!--        <appender-ref ref="SAVE-TO-FILE" />-->
+<!--    </logger>-->
+
+    <!-- Logs no padrão json -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+<!--        <appender-ref ref="SAVE-TO-FILE"/>-->
+<!--        <appender-ref ref="stash" />-->
+    </root>
+
+</configuration>

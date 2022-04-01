@@ -4,7 +4,7 @@ spring:
       import-check:
         enabled: false
   application:
-    name: example-app
+    name: myapp
 #### Pool de conexao ####
   datasource:
     hikari:
@@ -19,9 +19,19 @@ spring:
   data:
     mongodb:
       uri: mongodb://root:example@localhost:27017/example?authSource=admin
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
+
+  zipkin:
+    base-url: http://localhost:9411
+  sleuth:
+    enabled: true
+    sampler:
+      probability: 1.0
 
 server:
   port: 8080
+  shutdown: graceful
 
 ### OpenTracing ###
 opentracing:
@@ -41,9 +51,15 @@ management:
   health:
     mongo:
       enabled: true
+    livenessState:
+      enabled: true
+    readinessState:
+      enabled: true
   endpoint:
     health:
       show-details: always
+      probes:
+        enabled: true
     metrics:
       enabled: true
     prometheus:
